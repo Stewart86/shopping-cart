@@ -13,6 +13,17 @@ import { useContext } from "react"
 
 export const Cart = () => {
   const { cartItems } = useContext(CartContext)
+
+  const calculateTotal = () => {
+      if (cartItems.length === 0) {
+          return 0.
+      }
+    const total = cartItems
+      .map((product) => Number(product.price))
+      .reduce((a, b) => a + b)
+    return total
+  }
+
   return (
     <TableContainer>
       <Table>
@@ -26,12 +37,20 @@ export const Cart = () => {
         <TableBody>
           {cartItems &&
             cartItems.map((product) => (
-              <TableRow>
+              <TableRow key={product.id}>
                 <TableCell>{product.title}</TableCell>
                 <TableCell>{product.price}</TableCell>
                 <TableCell>1</TableCell>
               </TableRow>
             ))}
+        </TableBody>
+      </Table>
+      <Table>
+        <TableBody>
+          <TableRow>
+            <TableCell>Total</TableCell>
+            <TableCell>${calculateTotal()}</TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
