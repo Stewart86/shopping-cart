@@ -2,14 +2,14 @@ import { Container, Grid } from "@material-ui/core"
 import React, { useEffect } from "react"
 
 import { ProductCard } from "../components/ProductCard"
-import { getProducts } from "../api/product"
+import { getAllProducts } from "../api/product"
 import { useState } from "react"
 
 export const Home = () => {
   const [products, setProducts] = useState(null)
   useEffect(() => {
     const products = async () => {
-      const dbProducts = await getProducts()
+      const dbProducts = await getAllProducts()
       console.log(dbProducts)
       setProducts(dbProducts)
     }

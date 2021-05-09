@@ -11,6 +11,7 @@ import {
 
 import React from "react"
 import { makeStyles } from "@material-ui/core"
+import { useHistory } from "react-router"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,10 +24,15 @@ const useStyles = makeStyles((theme) => ({
 
 export const ProductCard = ({ product }) => {
   const classes = useStyles()
+  const history = useHistory()
+
+  const handleClick = (id) => {
+    history.push(`/product/${id}`)
+  }
   return (
     <Grid item xs={3}>
       <Card className={classes.root}>
-        <CardActionArea>
+        <CardActionArea onClick={(e) => handleClick(product.id)}>
           <CardMedia
             className={classes.media}
             image={product.image}
@@ -42,7 +48,7 @@ export const ProductCard = ({ product }) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size='small' variant="contained" color='primary'>
+          <Button size='small' variant='contained' color='primary'>
             Buy
           </Button>
         </CardActions>
