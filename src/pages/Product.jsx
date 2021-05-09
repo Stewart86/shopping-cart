@@ -1,8 +1,10 @@
 import { Button, Container, Paper, Typography } from "@material-ui/core"
 
+import { CartContext } from "../contexts/CartProvider"
 import React from "react"
 import { getProduct } from "../api/product"
 import { makeStyles } from "@material-ui/core"
+import { useContext } from "react"
 import { useEffect } from "react"
 import { useParams } from "react-router"
 import { useState } from "react"
@@ -21,6 +23,7 @@ export const Product = () => {
   const classes = useStyles()
   const [product, setProduct] = useState(null)
 
+  const { addToCart } = useContext(CartContext)
   let { id } = useParams()
 
   useEffect(() => {
@@ -29,6 +32,10 @@ export const Product = () => {
     }
     productApi(id)
   }, [id])
+
+  const handleAddToCart = () => {
+    addToCart(product)
+  }
 
   if (!product) {
     return null
@@ -42,7 +49,7 @@ export const Product = () => {
           <Typography>{product.category}</Typography>
           <Typography>{product.description}</Typography>
           <Typography>{product.price}</Typography>
-          <Button>Add to Cart</Button>
+          <Button onClick={handleAddToCart}>Add to Cart</Button>
         </div>
       </Paper>
     </Container>
