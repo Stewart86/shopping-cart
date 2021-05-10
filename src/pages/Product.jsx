@@ -1,6 +1,7 @@
 import { Button, Container, Grid, Paper, Typography } from "@material-ui/core"
 
 import { CartContext } from "../contexts/CartProvider"
+import { Loading } from "../components/Loading"
 import React from "react"
 import { formatCurrency } from "../helpers/formatter"
 import { getProduct } from "../api/product"
@@ -41,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 export const Product = () => {
   const classes = useStyles()
   const [product, setProduct] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   const { addToCart } = useContext(CartContext)
   let { id } = useParams()
@@ -48,6 +50,7 @@ export const Product = () => {
   useEffect(() => {
     const productApi = async (id) => {
       setProduct(await getProduct(id))
+      setLoading(false)
     }
     productApi(id)
   }, [id])
@@ -56,8 +59,8 @@ export const Product = () => {
     addToCart(product.id, product.title, product.price)
   }
 
-  if (!product) {
-    return null
+  if (loading || !product) {
+    return <Loading />
   }
   return (
     <Container>

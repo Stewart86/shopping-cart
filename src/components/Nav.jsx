@@ -30,7 +30,7 @@ export const Nav = () => {
       <Container>
         <Toolbar>
           <Typography variant='h6' className={classes.title}>
-            Lasada
+            Shopda Mall
           </Typography>
           <IconButton color='inherit' onClick={() => history.push("/")}>
             <HomeOutlined />

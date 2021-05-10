@@ -28,8 +28,28 @@ export const CartProvider = ({ children }) => {
     })
   }
 
+  const removeItem = (id) => {
+    setCartItems((item) => {
+      if (item[id] && item[id].quantity === 1) {
+        delete item[id]
+      } else if (item[id]) {
+        item[id].quantity -= 1
+      } else {
+        setCartCount(0)
+        return {}
+      }
+      setCartCount(
+        Object.keys(item)
+          .map((id) => item[id].quantity)
+          .reduce((a, b) => a + b)
+      )
+      return item
+    })
+  }
+
   return (
-    <CartContext.Provider value={{ addToCart, cartCount, cartItems }}>
+    <CartContext.Provider
+      value={{ addToCart, cartCount, cartItems, removeItem }}>
       {children}
     </CartContext.Provider>
   )

@@ -46,7 +46,7 @@ export const ProductCard = ({ product }) => {
             title={product.title}
           />
           <CardContent>
-            <Typography className={classes.title} variant='h6' component='h1'>
+            <Typography className={classes.title} variant='h6' component='h2'>
               {product.title}
             </Typography>
             <Typography variant='h5' color='primary'>
