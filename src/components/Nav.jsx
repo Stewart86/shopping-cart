@@ -35,7 +35,10 @@ export const Nav = () => {
           <IconButton color='inherit' onClick={() => history.push("/")}>
             <HomeOutlined />
           </IconButton>
-          <IconButton color='inherit' onClick={() => history.push("/cart")}>
+          <IconButton
+            disabled={cartCount === 0}
+            color='inherit'
+            onClick={() => history.push("/cart")}>
             <Badge badgeContent={cartCount} color='secondary'>
               <ShoppingCartOutlined color='inherit' />
             </Badge>

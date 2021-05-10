@@ -7,15 +7,18 @@ import React from "react"
 import { useEffect } from "react"
 
 export const Recommandation = ({ category }) => {
-  const { products } = useContext(ProductContext)
   const [reduced, setReduced] = useState(null)
+
+  const { products } = useContext(ProductContext)
+
   useEffect(() => {
     let mounted = true
     if (mounted && products) {
       setReduced(() =>
         products
           .filter((item) => item.category === category)
-          .sort(() => Math.random() - 0.5).slice(0,4)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 4)
       )
     }
     return () => {
@@ -25,7 +28,9 @@ export const Recommandation = ({ category }) => {
 
   return (
     <>
-      <Typography variant='h4' gutterBottom>You may also like</Typography>
+      <Typography variant='h4' gutterBottom>
+        You may also like
+      </Typography>
       <Grid container direction='row'>
         {reduced &&
           reduced.map((product) => (

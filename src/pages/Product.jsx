@@ -107,7 +107,7 @@ export const Product = () => {
         </Grid>
       </Paper>
       <div className={classes.recomWrapper}>
-        <Recommandation category={product.category} />
+        <Recommandation category={product.category} key={product.id} />
       </div>
     </Container>
   )
