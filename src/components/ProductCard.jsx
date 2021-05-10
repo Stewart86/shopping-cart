@@ -53,7 +53,7 @@ export const ProductCard = ({ product }) => {
               {formatCurrency(product.price)}
             </Typography>
             <Typography variant='subtitle2'>
-              category: {product.category}
+              <b>category:</b> {product.category}
             </Typography>
           </CardContent>
         </CardActionArea>
