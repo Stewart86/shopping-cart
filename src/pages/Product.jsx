@@ -1,8 +1,10 @@
-import { Button, Container, Paper, Typography } from "@material-ui/core"
+import { Button, Container, Grid, Paper, Typography } from "@material-ui/core"
 
 import { CartContext } from "../contexts/CartProvider"
 import React from "react"
+import { formatCurrency } from "../helpers/formatter"
 import { getProduct } from "../api/product"
+import { grey } from "@material-ui/core/colors"
 import { makeStyles } from "@material-ui/core"
 import { useContext } from "react"
 import { useEffect } from "react"
@@ -14,8 +16,25 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
+  imageContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  image: { maxWidth: "100%", padding: theme.spacing(3) },
+  details: {
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "column",
+  },
   contentWrapper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
+    flexGrow: 1,
+  },
+  category: { color: grey[500] },
+  footer: {
+    display: "flex",
+    justifyContent: "space-between",
+    margin: theme.spacing(3),
   },
 }))
 
@@ -43,14 +62,42 @@ export const Product = () => {
   return (
     <Container>
       <Paper className={classes.root}>
-        <img src={product.image} alt={product.title} />
-        <div className={classes.contentWrapper}>
-          <Typography variant='h2'>{product.title}</Typography>
-          <Typography>{product.category}</Typography>
-          <Typography>{product.description}</Typography>
-          <Typography>{product.price}</Typography>
-          <Button onClick={handleAddToCart}>Add to Cart</Button>
-        </div>
+        <Grid container direction='row'>
+          <Grid className={classes.imageContainer} item sm={12} md={6}>
+            <img
+              className={classes.image}
+              src={product.image}
+              alt={product.title}
+            />
+          </Grid>
+          <Grid className={classes.details} item sm={12} md={6}>
+            <div className={classes.contentWrapper}>
+              <Typography variant='h3' component='h1'>
+                {product.title}
+              </Typography>
+              <Typography
+                className={classes.category}
+                gutterBottom
+                variant='subtitle1'>
+                category: {product.category}
+              </Typography>
+              <Typography paragraph variant='body1'>
+                {product.description}
+              </Typography>
+            </div>
+            <div className={classes.footer}>
+              <Typography variant='h4' color='primary'>
+                {formatCurrency(product.price)}
+              </Typography>
+              <Button
+                onClick={handleAddToCart}
+                variant='contained'
+                color='primary'>
+                Add to Cart
+              </Button>
+            </div>
+          </Grid>
+        </Grid>
       </Paper>
     </Container>
   )
