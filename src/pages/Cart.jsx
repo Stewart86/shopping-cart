@@ -12,13 +12,14 @@ import {
   TableRow,
   Typography,
 } from "@material-ui/core"
+import { useContext, useState } from "react"
 
 import { CartContext } from "../contexts/CartProvider"
+import { CheckoutDialog } from "../components/CheckoutDialog"
 import React from "react"
 import { calculateTotal } from "../helpers/calculation"
 import { formatCurrency } from "../helpers/formatter"
 import { makeStyles } from "@material-ui/core"
-import { useContext } from "react"
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -29,7 +30,19 @@ const useStyles = makeStyles((theme) => ({
 
 export const Cart = () => {
   const classes = useStyles()
-  const { addToCart, cartItems, removeItem } = useContext(CartContext)
+  const { addToCart, cartItems, removeItem, clearCart } = useContext(
+    CartContext
+  )
+  const [checkout, setCheckout] = useState(false)
+
+  const handleCheckout = () => {
+    setCheckout(true)
+  }
+
+  const handleClearCart = () => {
+    setCheckout(false)
+    clearCart()
+  }
 
   return (
     <Container>
@@ -87,10 +100,15 @@ export const Cart = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <Button className={classes.button} variant='contained' color='primary'>
+        <Button
+          className={classes.button}
+          variant='contained'
+          color='primary'
+          onClick={handleCheckout}>
           Proceed to Checkout
         </Button>
       </Paper>
+      <CheckoutDialog open={checkout} onClose={handleClearCart} />
     </Container>
   )
 }
