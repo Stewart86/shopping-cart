@@ -34,7 +34,7 @@ export const Product = () => {
   }, [id])
 
   const handleAddToCart = () => {
-    addToCart(product)
+    addToCart(product.id, product.title, product.price)
   }
 
   if (!product) {

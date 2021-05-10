@@ -8,16 +8,16 @@ export const CartProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0)
   const [cartItems, setCartItems] = useState({})
 
-  const addToCart = (product) => {
+  const addToCart = (id, title, price) => {
     setCartItems((item) => {
-      if (!item[product.id]) {
-        item[product.id] = {
+      if (!item[id]) {
+        item[id] = {
           quantity: 1,
-          title: product.title,
-          price: product.price,
+          title,
+          price,
         }
       } else {
-        item[product.id].quantity += 1
+        item[id].quantity += 1
       }
       setCartCount(
         Object.keys(item)
@@ -27,6 +27,7 @@ export const CartProvider = ({ children }) => {
       return item
     })
   }
+
   return (
     <CartContext.Provider value={{ addToCart, cartCount, cartItems }}>
       {children}
