@@ -10,6 +10,7 @@ import {
 import { CartContext } from "../contexts/CartProvider"
 import React from "react"
 import { calculateTotal } from "../helpers/calculation"
+import { formatCurrency } from "../helpers/formatter"
 import { useContext } from "react"
 
 export const Cart = () => {
@@ -29,7 +30,7 @@ export const Cart = () => {
           {Object.keys(cartItems).map((pid) => (
             <TableRow key={cartItems[pid].id}>
               <TableCell>{cartItems[pid].title}</TableCell>
-              <TableCell>{cartItems[pid].price}</TableCell>
+              <TableCell>{formatCurrency(cartItems[pid].price)}</TableCell>
               <TableCell>{cartItems[pid].quantity}</TableCell>
             </TableRow>
           ))}
@@ -39,7 +40,7 @@ export const Cart = () => {
         <TableBody>
           <TableRow>
             <TableCell>Total</TableCell>
-            <TableCell>${calculateTotal(cartItems)}</TableCell>
+            <TableCell>{formatCurrency(calculateTotal(cartItems))}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
