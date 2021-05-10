@@ -3,8 +3,9 @@ import React, { useEffect } from "react"
 
 import { Loading } from "../components/Loading"
 import { ProductCard } from "../components/ProductCard"
-import { getAllProducts } from "../api/product"
+import { ProductContext } from "../contexts/ProductProvider"
 import { makeStyles } from "@material-ui/core"
+import { useContext } from "react"
 import { useState } from "react"
 
 const useStyles = makeStyles((theme) => ({
@@ -15,37 +16,38 @@ const useStyles = makeStyles((theme) => ({
 
 export const Home = () => {
   const classes = useStyles()
-  const [products, setProducts] = useState(null)
   const [filtered, setFiltered] = useState(null)
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState("")
   const [sort, setSort] = useState("product")
 
+  const { products } = useContext(ProductContext)
+
   useEffect(() => {
     let mounted = true
-    const products = async () => {
+    const productUpdate = () => {
       if (mounted) {
-        const dbProducts = await getAllProducts()
-        setProducts(dbProducts)
-        setFiltered(() =>
-          dbProducts.sort((a, b) => {
-            if (a.title.toLowerCase() < b.title.toLowerCase()) {
-              return -1
-            }
-            if (a.title.toLowerCase() > b.title.toLowerCase()) {
-              return 1
-            }
-            return 0
-          })
-        )
-        setLoading(false)
+        if (products) {
+          setFiltered(() =>
+            products.sort((a, b) => {
+              if (a.title.toLowerCase() < b.title.toLowerCase()) {
+                return -1
+              }
+              if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                return 1
+              }
+              return 0
+            })
+          )
+          setLoading(false)
+        }
       }
     }
-    products()
+    productUpdate()
     return () => {
       mounted = false
     }
-  }, [])
+  }, [products])
 
   const handleSearch = (e) => {
     const value = e.target.value
@@ -67,7 +69,7 @@ export const Home = () => {
               return item.category.toLowerCase().includes(value.toLowerCase())
 
             default:
-              return null
+              return item.title.toLowerCase().includes(value.toLowerCase())
           }
         })
       })
@@ -89,6 +91,7 @@ export const Home = () => {
           })
         )
         break
+
       case "price":
         setFiltered((state) => state.sort((a, b) => a.price - b.price))
         break

@@ -7,28 +7,31 @@ import { Home } from "./pages/Home"
 import { Nav } from "./components/Nav"
 import { NotFound } from "./pages/NotFound"
 import { Product } from "./pages/Product"
+import { ProductProvider } from "./contexts/ProductProvider"
 
 function App() {
   return (
     <CartProvider>
-      <Router>
-        <CssBaseline />
-        <Nav />
-        <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-          <Route path='/product/:id'>
-            <Product />
-          </Route>
-          <Route path='/cart'>
-            <Cart />
-          </Route>
-          <Route path='*'>
-            <NotFound />
-          </Route>
-        </Switch>
-      </Router>
+      <ProductProvider>
+        <Router>
+          <CssBaseline />
+          <Nav />
+          <Switch>
+            <Route exact path='/'>
+              <Home />
+            </Route>
+            <Route path='/product/:id'>
+              <Product />
+            </Route>
+            <Route path='/cart'>
+              <Cart />
+            </Route>
+            <Route path='*'>
+              <NotFound />
+            </Route>
+          </Switch>
+        </Router>
+      </ProductProvider>
     </CartProvider>
   )
 }
