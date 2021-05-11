@@ -5,11 +5,11 @@ import {
   IconButton,
   Toolbar,
   Typography,
+  makeStyles,
 } from "@material-ui/core"
 import { HomeOutlined, ShoppingCartOutlined } from "@material-ui/icons"
 
 import { CartContext } from "../contexts/CartProvider"
-import { makeStyles } from "@material-ui/core"
 import { useContext } from "react"
 import { useHistory } from "react-router"
 

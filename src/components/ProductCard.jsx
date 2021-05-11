@@ -5,10 +5,10 @@ import {
   CardMedia,
   Grid,
   Typography,
+  makeStyles,
 } from "@material-ui/core"
 
 import { formatCurrency } from "../helpers/formatter"
-import { makeStyles } from "@material-ui/core"
 import { useHistory } from "react-router"
 
 const useStyles = makeStyles((theme) => ({

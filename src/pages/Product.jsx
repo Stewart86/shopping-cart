@@ -1,4 +1,12 @@
-import { Button, Container, Grid, Paper, Typography } from "@material-ui/core"
+import {
+  Button,
+  Container,
+  Grid,
+  Paper,
+  Typography,
+  makeStyles,
+} from "@material-ui/core"
+import { useContext, useEffect, useState } from "react"
 
 import { CartContext } from "../contexts/CartProvider"
 import { Loading } from "../components/Loading"
@@ -6,11 +14,7 @@ import { Recommandation } from "../components/Recommandation"
 import { formatCurrency } from "../helpers/formatter"
 import { getProduct } from "../api/product"
 import { grey } from "@material-ui/core/colors"
-import { makeStyles } from "@material-ui/core"
-import { useContext } from "react"
-import { useEffect } from "react"
 import { useParams } from "react-router"
-import { useState } from "react"
 
 const useStyles = makeStyles((theme) => ({
   root: {

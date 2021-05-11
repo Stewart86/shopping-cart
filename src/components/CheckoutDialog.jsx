@@ -8,12 +8,10 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
+  makeStyles,
 } from "@material-ui/core"
 import { Check, ContactMail } from "@material-ui/icons"
-import { useState } from "react"
-
-import { makeStyles } from "@material-ui/core"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 const useStyles = makeStyles((theme) => ({
   progress: {

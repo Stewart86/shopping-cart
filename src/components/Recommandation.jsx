@@ -1,9 +1,8 @@
 import { Grid, Typography } from "@material-ui/core"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 import { ProductCard } from "./ProductCard"
 import { ProductContext } from "../contexts/ProductProvider"
-import { useEffect } from "react"
 
 export const Recommandation = ({ category }) => {
   const [reduced, setReduced] = useState(null)
