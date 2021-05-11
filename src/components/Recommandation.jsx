@@ -3,7 +3,6 @@ import { useContext, useState } from "react"
 
 import { ProductCard } from "./ProductCard"
 import { ProductContext } from "../contexts/ProductProvider"
-import React from "react"
 import { useEffect } from "react"
 
 export const Recommandation = ({ category }) => {

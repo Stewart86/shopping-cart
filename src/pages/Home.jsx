@@ -1,5 +1,5 @@
 import { Container, Grid, MenuItem, TextField } from "@material-ui/core"
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 
 import { Loading } from "../components/Loading"
 import { ProductCard } from "../components/ProductCard"

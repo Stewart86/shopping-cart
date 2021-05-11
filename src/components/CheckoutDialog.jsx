@@ -10,7 +10,7 @@ import {
   ListItemText,
 } from "@material-ui/core"
 import { Check, ContactMail } from "@material-ui/icons"
-import React, { useState } from "react"
+import { useState } from "react"
 
 import { makeStyles } from "@material-ui/core"
 import { useEffect } from "react"

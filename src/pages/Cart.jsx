@@ -16,7 +16,6 @@ import { useContext, useState } from "react"
 
 import { CartContext } from "../contexts/CartProvider"
 import { CheckoutDialog } from "../components/CheckoutDialog"
-import React from "react"
 import { calculateTotal } from "../helpers/calculation"
 import { formatCurrency } from "../helpers/formatter"
 import { makeStyles } from "@material-ui/core"

@@ -1,7 +1,5 @@
 import { Backdrop, CircularProgress, Fade } from "@material-ui/core"
 
-import React from "react"
-
 export const Loading = () => {
   return (
     <Fade in>

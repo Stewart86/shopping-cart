@@ -2,7 +2,6 @@ import { Button, Container, Grid, Paper, Typography } from "@material-ui/core"
 
 import { CartContext } from "../contexts/CartProvider"
 import { Loading } from "../components/Loading"
-import React from "react"
 import { Recommandation } from "../components/Recommandation"
 import { formatCurrency } from "../helpers/formatter"
 import { getProduct } from "../api/product"
@@ -39,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3),
   },
   recomWrapper: {
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }))
 
 export const Product = () => {

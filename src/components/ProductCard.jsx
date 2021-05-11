@@ -7,7 +7,6 @@ import {
   Typography,
 } from "@material-ui/core"
 
-import React from "react"
 import { formatCurrency } from "../helpers/formatter"
 import { makeStyles } from "@material-ui/core"
 import { useHistory } from "react-router"

@@ -9,7 +9,6 @@ import {
 import { HomeOutlined, ShoppingCartOutlined } from "@material-ui/icons"
 
 import { CartContext } from "../contexts/CartProvider"
-import React from "react"
 import { makeStyles } from "@material-ui/core"
 import { useContext } from "react"
 import { useHistory } from "react-router"
