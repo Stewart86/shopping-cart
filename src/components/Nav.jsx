@@ -1,6 +1,7 @@
 import {
   AppBar,
   Badge,
+  Button,
   Container,
   IconButton,
   Toolbar,
@@ -31,6 +32,11 @@ export const Nav = () => {
           <Typography variant='h6' className={classes.title}>
             Shopda Mall
           </Typography>
+          <Button
+            color='inherit'
+            onClick={() => (window.location.href = "/assignment-1")}>
+            Assignment 1
+          </Button>
           <IconButton color='inherit' onClick={() => history.push("/")}>
             <HomeOutlined />
           </IconButton>

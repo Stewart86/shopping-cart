@@ -50,19 +50,30 @@ export const Product = () => {
   const classes = useStyles()
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [added, setAdded] = useState(false)
 
   const { addToCart } = useContext(CartContext)
   let { id } = useParams()
 
   useEffect(() => {
     const productApi = async (id) => {
+      setLoading(true)
       setProduct(await getProduct(id))
       setLoading(false)
     }
     productApi(id)
   }, [id])
 
+  useEffect(() => {
+    if (added) {
+      setTimeout(() => {
+        setAdded(false)
+      }, 800)
+    }
+  }, [added])
+
   const handleAddToCart = () => {
+    setAdded(true)
     addToCart(product.id, product.title, product.price)
   }
 
@@ -101,9 +112,10 @@ export const Product = () => {
               </Typography>
               <Button
                 onClick={handleAddToCart}
+                disabled={added}
                 variant='contained'
                 color='primary'>
-                Add to Cart
+                {added ? "Thank you!" : "Add to Cart"}
               </Button>
             </div>
           </Grid>
