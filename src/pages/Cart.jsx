@@ -17,6 +17,7 @@ import { useContext, useState } from "react"
 
 import { CartContext } from "../contexts/CartProvider"
 import { CheckoutDialog } from "../components/CheckoutDialog"
+import { Redirect } from "react-router"
 import { calculateTotal } from "../helpers/calculation"
 import { formatCurrency } from "../helpers/formatter"
 
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Cart = () => {
   const classes = useStyles()
-  const { addToCart, cartItems, removeItem, clearCart } =
+  const { addToCart, cartCount, cartItems, removeItem, clearCart } =
     useContext(CartContext)
   const [checkout, setCheckout] = useState(false)
 
@@ -40,6 +41,9 @@ export const Cart = () => {
   const handleClearCart = () => {
     setCheckout(false)
     clearCart()
+  }
+  if (cartCount === 0) {
+    return <Redirect path='/' />
   }
 
   return (
