@@ -5,7 +5,6 @@ import {
 } from "@material-ui/core/styles"
 import { deepOrange, orange } from "@material-ui/core/colors"
 
-import React from "react"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { useMemo } from "react"
 

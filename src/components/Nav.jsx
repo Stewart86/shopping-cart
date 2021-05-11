@@ -1,16 +1,16 @@
 import {
   AppBar,
   Badge,
+  Button,
   Container,
   IconButton,
   Toolbar,
   Typography,
+  makeStyles,
 } from "@material-ui/core"
 import { HomeOutlined, ShoppingCartOutlined } from "@material-ui/icons"
 
 import { CartContext } from "../contexts/CartProvider"
-import React from "react"
-import { makeStyles } from "@material-ui/core"
 import { useContext } from "react"
 import { useHistory } from "react-router"
 
@@ -32,6 +32,11 @@ export const Nav = () => {
           <Typography variant='h6' className={classes.title}>
             Shopda Mall
           </Typography>
+          <Button
+            color='inherit'
+            onClick={() => (window.location.href = "/assignment-1")}>
+            Assignment 1
+          </Button>
           <IconButton color='inherit' onClick={() => history.push("/")}>
             <HomeOutlined />
           </IconButton>

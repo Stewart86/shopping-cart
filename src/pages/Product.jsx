@@ -1,17 +1,20 @@
-import { Button, Container, Grid, Paper, Typography } from "@material-ui/core"
+import {
+  Button,
+  Container,
+  Grid,
+  Paper,
+  Typography,
+  makeStyles,
+} from "@material-ui/core"
+import { useContext, useEffect, useState } from "react"
 
 import { CartContext } from "../contexts/CartProvider"
 import { Loading } from "../components/Loading"
-import React from "react"
 import { Recommandation } from "../components/Recommandation"
 import { formatCurrency } from "../helpers/formatter"
 import { getProduct } from "../api/product"
 import { grey } from "@material-ui/core/colors"
-import { makeStyles } from "@material-ui/core"
-import { useContext } from "react"
-import { useEffect } from "react"
 import { useParams } from "react-router"
-import { useState } from "react"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,27 +42,38 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3),
   },
   recomWrapper: {
-    marginTop: theme.spacing(2)
-  }
+    marginTop: theme.spacing(2),
+  },
 }))
 
 export const Product = () => {
   const classes = useStyles()
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [added, setAdded] = useState(false)
 
   const { addToCart } = useContext(CartContext)
   let { id } = useParams()
 
   useEffect(() => {
     const productApi = async (id) => {
+      setLoading(true)
       setProduct(await getProduct(id))
       setLoading(false)
     }
     productApi(id)
   }, [id])
 
+  useEffect(() => {
+    if (added) {
+      setTimeout(() => {
+        setAdded(false)
+      }, 800)
+    }
+  }, [added])
+
   const handleAddToCart = () => {
+    setAdded(true)
     addToCart(product.id, product.title, product.price)
   }
 
@@ -98,9 +112,10 @@ export const Product = () => {
               </Typography>
               <Button
                 onClick={handleAddToCart}
+                disabled={added}
                 variant='contained'
                 color='primary'>
-                Add to Cart
+                {added ? "Thank you!" : "Add to Cart"}
               </Button>
             </div>
           </Grid>

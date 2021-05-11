@@ -1,12 +1,16 @@
-import { Container, Grid, MenuItem, TextField } from "@material-ui/core"
-import React, { useEffect } from "react"
+import {
+  Container,
+  Grid,
+  MenuItem,
+  TextField,
+  makeStyles,
+} from "@material-ui/core"
+import { useContext, useState } from "react"
 
 import { Loading } from "../components/Loading"
 import { ProductCard } from "../components/ProductCard"
 import { ProductContext } from "../contexts/ProductProvider"
-import { makeStyles } from "@material-ui/core"
-import { useContext } from "react"
-import { useState } from "react"
+import { useEffect } from "react"
 
 const useStyles = makeStyles((theme) => ({
   searchBox: {

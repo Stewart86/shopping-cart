@@ -1,10 +1,10 @@
-import React, { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 
 export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(
-    () => localStorage.getItem("cartCount") || 0
+    () => Number(localStorage.getItem("cartCount")) || 0
   )
   const [cartItems, setCartItems] = useState(
     () => JSON.parse(localStorage.getItem("cartItems")) || {}
