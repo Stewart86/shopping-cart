@@ -1,14 +1,15 @@
 import {
   AppBar,
   Badge,
+  Container,
   IconButton,
   Toolbar,
   Typography,
 } from "@material-ui/core"
+import { HomeOutlined, ShoppingCartOutlined } from "@material-ui/icons"
 
 import { CartContext } from "../contexts/CartProvider"
 import React from "react"
-import { ShoppingBasketOutlined } from "@material-ui/icons"
 import { makeStyles } from "@material-ui/core"
 import { useContext } from "react"
 import { useHistory } from "react-router"
@@ -23,21 +24,27 @@ export const Nav = () => {
   const classes = useStyles()
   const history = useHistory()
   const { cartCount } = useContext(CartContext)
-  const handleCart = () => {
-    history.push("/cart")
-  }
+
   return (
     <AppBar position='sticky'>
-      <Toolbar>
-        <Typography variant='h6' className={classes.title}>
-          Lasada
-        </Typography>
-        <IconButton color='inherit' onClick={handleCart}>
-          <Badge badgeContent={cartCount}>
-            <ShoppingBasketOutlined color='inherit' />
-          </Badge>
-        </IconButton>
-      </Toolbar>
+      <Container>
+        <Toolbar>
+          <Typography variant='h6' className={classes.title}>
+            Shopda Mall
+          </Typography>
+          <IconButton color='inherit' onClick={() => history.push("/")}>
+            <HomeOutlined />
+          </IconButton>
+          <IconButton
+            disabled={cartCount === 0}
+            color='inherit'
+            onClick={() => history.push("/cart")}>
+            <Badge badgeContent={cartCount} color='secondary'>
+              <ShoppingCartOutlined color='inherit' />
+            </Badge>
+          </IconButton>
+        </Toolbar>
+      </Container>
     </AppBar>
   )
 }
