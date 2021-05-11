@@ -14,15 +14,18 @@ Assignment 1 can be found by clicking on Assignment 1 on the nav bar of this sho
 
 A decision was made (based on the following reasons) to use Material UI component libary instead of Tailwind CSS for styling of UI components.
 
-Having not use Tailwind CSS before and have head alot of good things about it, I was acutally quited excited to me about to try this utility libary for the first time.
-I did some quick research, and watch a couple of YouTube and found that Tailwind CSS is pretty customisable and not had to learn. However,
-As I was only given 5 days of time to build this app, a trade off between time spend learning a new technology (got lost between UI bugs) or creating an app with more features.
+Having not used Tailwind CSS before and have heard alot of good things about it, I was acutally quited excited to be trying this utility libary for the first time.
+I did some quick research, and watch a couple of YouTube videos and found that Tailwind CSS is pretty customisable and not had to learn. However,
+as I was only given 5 days to build this app, a trade off between time spend learning a new technology (got lost between UI bugs) or creating an app with more features and fixing functional bugs.
+
 Having use Material UI for most of my projects, i would still be able to do some styling without expending time finding out how to add spaces between elements or similar encouter.
+
 So I have decided to skip this bonus task and continue to use Material UI.
 
 #### Assumption 1 - Product listing will grow
 
-Although this is a fake api that only returns 20 items, this will never be the case for a real world shopping app. A search function is needed. It is also a number one feature for any shopping app to have. Basically cannot imagine how I would find thing without it.
+Although this is a fake api that only returns 20 items, this will never be the case for a real world shopping app. A search function is needed. It is also a number one feature for any shopping app to have. Basically I cannot imagine myself finding thing to buy without it.
+
 A simple search and sort (although ascending only) will allow shoppers to find the things they want quickly.
 
 As data is fixed and small, sorting can easily be done with client-side JavaScript. However, do note that for actual production app, search should be done from the server-side. One, so that large amount of data would not be sending over the net. Two, sorting with database using index should be more efficent that client-side code.
@@ -34,6 +37,8 @@ I have created a simple recommandation engine that randomised 4 items of the sam
 #### Assumption 3 - Someone will always lost their way
 
 A Not found page was created reusing the same recommandation component so even if user navigate into path unspecified, they might still find something they want.
+
+On a side note, since this recommandation is so reusable, there is no harm putting it in the cart page as well.
 
 #### Assumption 4 - Automated checkout
 
@@ -47,7 +52,7 @@ This is a feature that comes with Material UI, and colors for dark or light can 
 
 #### Assumption 6 - Theme's changes should be easy
 
-UI is always subjective and beauty will always be in the eye of the beholder. As such, in most case UI elements will subject to alot of changes. One good thing about material UI that I found was that theme is very customisable. It can be changed in one location (`ThemeProvider.js`) and app wide can reflect the change. Might be able to do it with Tailwind CSS too, but that will cause me more time to find then to code.
+UI is always subjective and beauty will always be in the eye of the beholder. As such, in most case UI elements will subject to alot of changes base on user feedback and client's requirements. One good thing about material UI that I found was that theme is very customisable. It can be changed in one location (`ThemeProvider.js`) and all UI components will reflect the change app wide. Might be able to do it with Tailwind CSS too, but that will cause me more time spent to find then to code.
 
 ## Available Scripts
 
