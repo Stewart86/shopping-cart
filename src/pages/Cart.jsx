@@ -1,4 +1,4 @@
-import { Add, Remove, ShoppingCart } from "@material-ui/icons"
+import { Add, Remove } from "@material-ui/icons"
 import {
   Button,
   Container,
@@ -17,6 +17,7 @@ import { useContext, useState } from "react"
 
 import { CartContext } from "../contexts/CartProvider"
 import { CheckoutDialog } from "../components/CheckoutDialog"
+import { Recommandation } from "../components/Recommandation"
 import { Redirect } from "react-router"
 import { calculateTotal } from "../helpers/calculation"
 import { formatCurrency } from "../helpers/formatter"
@@ -26,12 +27,16 @@ const useStyles = makeStyles((theme) => ({
     float: "right",
     margin: theme.spacing(2),
   },
+  recommandation: {
+    marginTop: theme.spacing(10),
+  },
 }))
 
 export const Cart = () => {
   const classes = useStyles()
-  const { addToCart, cartCount, cartItems, removeItem, clearCart } =
-    useContext(CartContext)
+  const { addToCart, cartCount, cartItems, removeItem, clearCart } = useContext(
+    CartContext
+  )
   const [checkout, setCheckout] = useState(false)
 
   const handleCheckout = () => {
@@ -48,9 +53,8 @@ export const Cart = () => {
 
   return (
     <Container>
-      <Typography gutterBottom variant='h4' component='h1'>
+      <Typography gutterBottom variant='h2' component='h1'>
         Shopping Cart
-        <ShoppingCart />
       </Typography>
       <Paper>
         <TableContainer>
@@ -111,6 +115,9 @@ export const Cart = () => {
         </Button>
       </Paper>
       <CheckoutDialog open={checkout} onClose={handleClearCart} />
+      <div className={classes.recommandation}>
+        <Recommandation />
+      </div>
     </Container>
   )
 }

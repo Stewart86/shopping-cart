@@ -18,7 +18,7 @@ export const NotFound = () => {
       </Grid>
       <Divider />
       <Grid>
-        <Recommandation category='jewelery' />
+        <Recommandation />
       </Grid>
     </Container>
   )

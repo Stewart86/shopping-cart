@@ -4,23 +4,26 @@ import { useContext, useEffect, useState } from "react"
 import { ProductCard } from "./ProductCard"
 import { ProductContext } from "../contexts/ProductProvider"
 
-export const Recommandation = ({ category }) => {
+export const Recommandation = ({ category = null }) => {
   const [reduced, setReduced] = useState(null)
 
   const { products } = useContext(ProductContext)
 
+  const getRandomCategory = (products) => {
+    const categories = products
+      .map((item) => item.category)
+      .filter((v, i, a) => a.indexOf(v) === i)
+    return categories[Math.floor(Math.random() * categories.length)]
+  }
   useEffect(() => {
-    let mounted = true
-    if (mounted && products) {
+    if (products) {
+      const filter = category || getRandomCategory(products)
       setReduced(() =>
         products
-          .filter((item) => item.category === category)
+          .filter((item) => item.category === filter)
           .sort(() => Math.random() - 0.5)
           .slice(0, 4)
       )
-    }
-    return () => {
-      mounted = false
     }
   }, [products, category])
 
